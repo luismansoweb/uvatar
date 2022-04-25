@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <!--<script src="./add/vue.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.22/vue.common.js" integrity="sha512-Ulu6dXRT7lUgoY8Ci05sXO4f2K409+sq8Vm0FgJqaaNYIO5drnMWxlChdm9ZM+vWJlsGW1/peXKUm4+qNoGX8Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+ 
+  <!-- <link type="text/css" rel="stylesheet" href="./add/bootstrap.min.css" /> -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ 
+  <!-- <link type="text/css" rel="stylesheet" href="./add/bootstrap-vue.min.css" /> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-vue/2.21.2/bootstrap-vue.min.css" integrity="sha512-YnP4Ql71idaMB+/ZG38+1adSSQotdqvixQ+dQg8x/IFA4heIj6i0BC31W5T5QUdK1Uuwa01YdqdcT42q+RldAg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- <script src="./add/polyfill.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-polyfills/0.1.43/polyfill.min.js" integrity="sha512-lvWiOP+aMKHllm4THsjzNleVuGOh0WGniJ3lgu/nvCbex1LlaQSxySUjAu/LTJw9FhnSL/PVYoQcckg1Q03+fQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+  <!-- <script src="./add/bootstrap-vue.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-vue/2.21.2/bootstrap-vue.min.js" integrity="sha512-Z0dNfC81uEXC2iTTXtE0rM18I3ATkwn1m8Lxe0onw/uPEEkCmVZd+H8GTeYGkAZv50yvoSR5N3hoy/Do2hNSkw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="soloCaraCSS.css">
+    <title>soloCara</title>
+</head>
+<body>
+    
+    <div id="app">
+        <div style="position: absolute; margin-top: 10px;  margin-left: 50px;" >
+            <div style="position: relative;">
+                <h1>UVATAR</h1>
+                <h2>JSON del Uvatar</h2>
+                <p>{{computedJSON}}</p>
+                <h2>Imagen del Uvatar aleatorio</h2>
+            </div>
+            <div style="position: relative;height: 1100px;">
+                <img v-bind:src="computedImgCaraVacia" style="position: absolute;z-index: 0;" />
+                <img class="partes" v-bind:src="computedImgOjoD" v-bind:style="{left: computedLeftOjoD, top: computedTopOjoD, width: computedWidthOjoD, height: computedHeightOjoD}">
+                <img class="partes" v-bind:src="computedImgOjoI" v-bind:style="{left: computedLeftOjoI, top: computedTopOjoI, width: computedWidthOjoI, height: computedHeightOjoI}">
+                <img class="partes" v-bind:src="computedImgNariz" v-bind:style="{left: computedLeftNariz, top: computedTopNariz, width: computedWidthNariz, height: computedHeightNariz}">
+                <img class="partes" v-bind:src="computedImgCejaD" v-bind:style="{left: computedLeftCejaD, top: computedTopCejaD, width: computedWidthCejaD, height: computedHeightCejaD}">
+                <img class="partes" v-bind:src="computedImgCejaI" v-bind:style="{left: computedLeftCejaI, top: computedTopCejaI, width: computedWidthCejaI, height: computedHeightCejaI}">
+                <img class="partes" v-bind:src="computedImgBoca" v-bind:style="{left: computedLeftBoca, top: computedTopBoca, width: computedWidthBoca, height: computedHeightBoca}">
+            </div>
+        </div>
+    </div>
+</body>
+<script src="caraAleatoria2.js"></script>
+</html>

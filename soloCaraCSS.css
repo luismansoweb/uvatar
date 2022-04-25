@@ -1,0 +1,10 @@
+.partes{
+    position: absolute;
+    z-index: 1;
+}
+.parrafo{
+    margin-left: 10px;
+}
+.parrafo p{
+    color:blue;
+}
