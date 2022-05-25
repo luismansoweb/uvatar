@@ -33,30 +33,35 @@
 <body>
     
   <div id="app">
-    <h1>Uvatar</h1>
-    <div>
-        <h2>Bienvenido al universo Uvatar</h2>
-    </div>
-     <div style="position: absolute; margin-top: 10px;  margin-left: 50px;" >
-        <div style="position: relative;">
-            <h2>JSON del Uvatar</h2>
-            
-            <h2>Imagen del Uvatar de {{cabeza.caraVacia.persona.alias}}</h2>
-        </div>
-        <div style="position: relative;height: 500px;align-items: baseline; margin-top: 3em;">
-            <img v-bind:src="computedImgCaraVacia" v-bind:style="{width: computedWidthCaraVacia, height: computedHeightCaraVacia}" />
-            <img class="partes" v-bind:src="computedImgOjoD" v-bind:style="{left: computedLeftOjoD, top: computedTopOjoD, width: computedWidthOjoD, height: computedHeightOjoD}">
-            <img class="partes" v-bind:src="computedImgOjoI" v-bind:style="{left: computedLeftOjoI, top: computedTopOjoI, width: computedWidthOjoI, height: computedHeightOjoI}">
-            <img class="partes" v-bind:src="computedImgNariz" v-bind:style="{left: computedLeftNariz, top: computedTopNariz, width: computedWidthNariz, height: computedHeightNariz}">
-            <img class="partes" v-bind:src="computedImgCejaD" v-bind:style="{left: computedLeftCejaD, top: computedTopCejaD, width: computedWidthCejaD, height: computedHeightCejaD}">
-            <img class="partes" v-bind:src="computedImgCejaI" v-bind:style="{left: computedLeftCejaI, top: computedTopCejaI, width: computedWidthCejaI, height: computedHeightCejaI}">
-            <img class="partes" v-bind:src="computedImgBoca" v-bind:style="{left: computedLeftBoca, top: computedTopBoca, width: computedWidthBoca, height: computedHeightBoca}">
-        </div>
-        <div>
-            <button v-on:click="mix" style="color: rgb(255, 255, 255);background-color:rgb(0, 200, 255); margin-left: 40px; margin-top: 30px;">UVATAR ALEATORIO</b-button>
-        </div>
      <b-container>
-         <h2> Catálogo de partes</h2>
+        <h1>Uvatar</h1>
+        <div>
+            <h2>Bienvenido al universo Uvatar</h2>
+        </div>
+         <div style="position: absolute; margin-top: 10px;  margin-left: 50px;">
+            <div style="position: relative;">
+                <h2>Imagen del Uvatar de {{cabeza.caraVacia.persona.alias}}</h2>
+            </div>
+            <div style="position: relative;height: 500px;align-items: baseline; margin-top: 3em;left:190px;">
+                <img v-bind:src="computedImgCaraVacia" v-bind:style="{width: computedWidthCaraVacia, height: computedHeightCaraVacia}" />
+                <img class="partes" v-bind:src="computedImgOjoD" v-bind:style="{left: computedLeftOjoD, top: computedTopOjoD, width: computedWidthOjoD, height: computedHeightOjoD}">
+                <img class="partes" v-bind:src="computedImgOjoI" v-bind:style="{left: computedLeftOjoI, top: computedTopOjoI, width: computedWidthOjoI, height: computedHeightOjoI}">
+                <img class="partes" v-bind:src="computedImgNariz" v-bind:style="{left: computedLeftNariz, top: computedTopNariz, width: computedWidthNariz, height: computedHeightNariz}">
+                <img class="partes" v-bind:src="computedImgCejaD" v-bind:style="{left: computedLeftCejaD, top: computedTopCejaD, width: computedWidthCejaD, height: computedHeightCejaD}">
+                <img class="partes" v-bind:src="computedImgCejaI" v-bind:style="{left: computedLeftCejaI, top: computedTopCejaI, width: computedWidthCejaI, height: computedHeightCejaI}">
+                <img class="partes" v-bind:src="computedImgBoca" v-bind:style="{left: computedLeftBoca, top: computedTopBoca, width: computedWidthBoca, height: computedHeightBoca}">
+            </div>
+            <div>
+                <button v-on:click="mix" style="color: rgb(255, 255, 255);background-color:rgb(0, 200, 255); margin-left: 40px; margin-top: 30px;">UVATAR ALEATORIO</button>
+            </div>
+            <h2 style="margin-top:20px;"> Menú opciones </h2>
+            <b-button-group style="margin-top: 10px;">
+                <button v-on:click="menu = 0" style="margin-right: 20px; margin-left: 40px; background-color: rgb(255, 145, 204);">Mostrar colección de partes</button>
+                <button v-on:click="menu = 1" style="margin-right: 20px; background-color: rgb(255, 145, 204);">Mostrar json</button>
+                <button v-on:click="menu = 2" style="margin-right: 20px; background-color: rgb(255, 145, 204);">Añadir uvatar</button>
+              </b-button-group>
+            <div v-if="menu == 0">
+         <h2> Colección de partes</h2>
          <p style="text-align: center;">Pulse sobre la parte que desee agregar al uvatar y se añadirá al uvatar</p>
         <template>
             <div class="accordion" role="tablist" style="margin-top:50px;">
@@ -245,18 +250,57 @@
                 </b-collapse>
               </b-card>
 
-            </div>
+  
           </template>
+            </div>
+            </div>
+            <div  v-if="menu == 1">
+                <h2 style="position:relative; margin-top: 950px;"> JSON del Uvatar</h2>
+                {{computedJSON}}
+            </div>
+            <div v-if="menu == 2">
+                <h2 style="position:relative; margin-top: 950px;"> Añadir uvatar</h2>
+                <template>
+                    <div>
+                      <b-form-group
+                        id="fieldset-1"
+                        description="Nombre que tendrá tu uvatar"
+                        label="Introduzca su alias"
+                        label-for="input-1"
+                        :invalid-feedback="invalidFeedback"
+                        :state="state"
+                      >
+                        <b-form-input id="input-1" v-model="name" :state="state" trim></b-form-input>
+                      </b-form-group>
+                    </div>
+                    <template>
+                        <div>
+                          <b-form-group label=" Intruduzca su sexo" v-slot="{ ariaDescribedby }">
+                            <b-form-radio v-model="selected" :aria-describedby="ariaDescribedby" name="some-radios" value="A">Masculino</b-form-radio>
+                            <b-form-radio v-model="selected" :aria-describedby="ariaDescribedby" name="some-radios" value="B">Femenino</b-form-radio>
+                            <b-form-radio v-model="selected" :aria-describedby="ariaDescribedby" name="some-radios" value="B">Otro</b-form-radio>
+                        </b-form-group>
+                      </template>
+                  </template>
+                  <template>
+                    <div>
+                      <label for="example-datepicker">Introduzca su fecha de nacimiento</label>
+                      <b-form-datepicker id="example-datepicker" v-model="value" class="mb-2"></b-form-datepicker>
+                    </div>
+                  </template>
+            </div>
       
  </div>
 
 
     <script>
+        
       var app = new Vue({
     el:"#app",
     data:{
         dominio_api:"https://uvatar.pythonanywhere.com",
        altura: 500,
+       desplazamiento:190,
         cabeza: JSON.parse('{"caraVacia": {"persona": {"alias": "LuisManso"}, "foto": "Imagenes/Uvatar/LuisManso/LuisManso_caraVacia.png", "size": {"x": 616, "y": 1095}, "boca": {"size": {"x": 279, "y": 113}, "pos": {"x": 180, "y": 612}}, "nariz": {"size": {"x": 187, "y": 190}, "pos": {"x": 229, "y": 408}}, "ojoD": {"size": {"x": 150, "y": 73}, "pos": {"x": 127, "y": 385}}, "ojoI": {"size": {"x": 148, "y": 83}, "pos": {"x": 360, "y": 382}}, "cejaD": {"size": {"x": 188, "y": 96}, "pos": {"x": 91, "y": 313}}, "cejaI": {"size": {"x": 187, "y": 101}, "pos": {"x": 364, "y": 307}}}, "boca": {"persona": {"alias": "LuisManso"}, "foto": "Imagenes/Uvatar/LuisManso/LuisManso_boca.png", "size": {"x": 279, "y": 113}}, "nariz": {"persona": {"alias": "LuisManso"}, "foto": "Imagenes/Uvatar/LuisManso/LuisManso_nariz.png", "size": {"x": 187, "y": 190}}, "ojoD": {"persona": {"alias": "LuisManso"}, "foto": "Imagenes/Uvatar/LuisManso/LuisManso_ojoD.png", "size": {"x": 150, "y": 73}}, "ojoI": {"persona": {"alias": "LuisManso"}, "foto": "Imagenes/Uvatar/LuisManso/LuisManso_ojoI.png", "size": {"x": 148, "y": 83}}, "cejaD": {"persona": {"alias": "LuisManso"}, "foto": "Imagenes/Uvatar/LuisManso/LuisManso_cejaD.png", "size": {"x": 188, "y": 96}}, "cejaI": {"persona": {"alias": "LuisManso"}, "foto": "Imagenes/Uvatar/LuisManso/LuisManso_cejaI.png", "size": {"x": 187, "y": 101}}}'),
         bocas:{},
         caraVacias:{},
@@ -265,7 +309,12 @@
         ojoIs:{},
         cejaIs:{},
         cejaDs:{},
-        mostrando: ""
+        mostrando: "",
+        menu: 0,
+        return: {
+            selected: '',
+            name: ''
+        }
     },
     computed:{
         computedConversion: function(){
@@ -412,7 +461,7 @@
         },
         async mix(){
         try{
-          const res = await axios.get( this.dominio_api+ '/mix')
+          const res = await axios.get( this.dominio_api)
           this.cabeza = res.data
         }catch(error){
             console.log(error)
@@ -430,6 +479,9 @@
         setParte(parte, variable){
             this.cabeza[parte] = this[parte + "s"][variable]
         },
+        setMenu(numMenu){
+            menu = numMenu
+        }
         
     }
 })
