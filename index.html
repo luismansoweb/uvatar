@@ -1,14 +1,439 @@
+<!DOCTYPE HTML>
 <html>
+
 <head>
- <title> </title>
-</head>
+
+    <meta charset="UTF-8">
+    <!--<script src="./add/vue.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.22/vue.common.js" integrity="sha512-Ulu6dXRT7lUgoY8Ci05sXO4f2K409+sq8Vm0FgJqaaNYIO5drnMWxlChdm9ZM+vWJlsGW1/peXKUm4+qNoGX8Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   
+    <!-- <link type="text/css" rel="stylesheet" href="./add/bootstrap.min.css" /> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+   
+    <!-- <link type="text/css" rel="stylesheet" href="./add/bootstrap-vue.min.css" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-vue/2.21.2/bootstrap-vue.min.css" integrity="sha512-YnP4Ql71idaMB+/ZG38+1adSSQotdqvixQ+dQg8x/IFA4heIj6i0BC31W5T5QUdK1Uuwa01YdqdcT42q+RldAg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
+    <!-- <script src="./add/polyfill.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-polyfills/0.1.43/polyfill.min.js" integrity="sha512-lvWiOP+aMKHllm4THsjzNleVuGOh0WGniJ3lgu/nvCbex1LlaQSxySUjAu/LTJw9FhnSL/PVYoQcckg1Q03+fQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  
+    <!-- <script src="./add/bootstrap-vue.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-vue/2.21.2/bootstrap-vue.min.js" integrity="sha512-Z0dNfC81uEXC2iTTXtE0rM18I3ATkwn1m8Lxe0onw/uPEEkCmVZd+H8GTeYGkAZv50yvoSR5N3hoy/Do2hNSkw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+  
+  <link rel="stylesheet" type="text/css" href="soloCaraCSS.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
 <body>
- <h1> Menu Uvatars </h1>
+    
+  <div id="app">
+    <h1>Uvatar</h1>
     <div>
-        <p><a href="SoloCara.html" title="Cara completa aleatoria">Pulse aquí para ver una cara completa aleatoria</a></p>
-        <p><a href="caraAleatoria1.html" title="Cara con partes generadas aleatoriamente">Pulse aquí para ver una cara con partes generadas aleatoriamente</a></p>
-        <p><a href="caraAleatoria2.html" title="Pulse aquí para ver una cara con partes generadas aleatoriamente">Pulse aquí para ver una cara con partes generadas aleatoriamente</a></p>
+        <h2>Bienvenido al universo Uvatar</h2>
     </div>
+     <div style="position: absolute; margin-top: 10px;  margin-left: 50px;" >
+        <div style="position: relative;">
+            <h2>JSON del Uvatar</h2>
+            
+            <h2>Imagen del Uvatar de {{cabeza.caraVacia.persona.alias}}</h2>
+        </div>
+        <div style="position: relative;height: 500px;align-items: baseline; margin-top: 3em;">
+            <img v-bind:src="computedImgCaraVacia" v-bind:style="{width: computedWidthCaraVacia, height: computedHeightCaraVacia}" />
+            <img class="partes" v-bind:src="computedImgOjoD" v-bind:style="{left: computedLeftOjoD, top: computedTopOjoD, width: computedWidthOjoD, height: computedHeightOjoD}">
+            <img class="partes" v-bind:src="computedImgOjoI" v-bind:style="{left: computedLeftOjoI, top: computedTopOjoI, width: computedWidthOjoI, height: computedHeightOjoI}">
+            <img class="partes" v-bind:src="computedImgNariz" v-bind:style="{left: computedLeftNariz, top: computedTopNariz, width: computedWidthNariz, height: computedHeightNariz}">
+            <img class="partes" v-bind:src="computedImgCejaD" v-bind:style="{left: computedLeftCejaD, top: computedTopCejaD, width: computedWidthCejaD, height: computedHeightCejaD}">
+            <img class="partes" v-bind:src="computedImgCejaI" v-bind:style="{left: computedLeftCejaI, top: computedTopCejaI, width: computedWidthCejaI, height: computedHeightCejaI}">
+            <img class="partes" v-bind:src="computedImgBoca" v-bind:style="{left: computedLeftBoca, top: computedTopBoca, width: computedWidthBoca, height: computedHeightBoca}">
+        </div>
+        <div>
+            <button v-on:click="mix" style="color: rgb(255, 255, 255);background-color:rgb(0, 200, 255); margin-left: 40px; margin-top: 30px;">UVATAR ALEATORIO</b-button>
+        </div>
+     <b-container>
+         <h2> Catálogo de partes</h2>
+         <p style="text-align: center;">Pulse sobre la parte que desee agregar al uvatar y se añadirá al uvatar</p>
+        <template>
+            <div class="accordion" role="tablist" style="margin-top:50px;">
+
+              <b-card no-body class="mb-1">
+                <b-card-header header-tag="header" class="p-1" role="tab">
+                  <b-button block v-b-toggle.accordion-1 variant="info" v-on:click="getPartes('caraVacia')">Cara</b-button>
+                </b-card-header>
+                <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
+                  <b-card-body>
+                    <b-card-tex style="align-items:center;">    
+                            <div v-if="mostrando == 'caraVacia'">
+                                        <div v-for="b in caraVacias">
+                                            <b-button v-on:click="setParte('caraVacia',b.persona.alias)" style="background-color: transparent;">
+                                                <b-col>                                        <b-row>
+                                                <img v-bind:src="b.foto" style="background-color:transparent; max-width:200px; align-items: center;"> </img>
+                                                </b-row>
+                                                <b-row>
+                                                {{b.persona.alias}}
+                                                </b-row>
+                                            </b-col>        
+                                            </b-button>
+                                        </div>
+                            </div>
+                    </b-card-text>
+                    <b-card-text>Elija una cara</b-card-text>
+                  </b-card-body>
+                </b-collapse>
+              </b-card>
+
+
+              <b-card no-body class="mb-1">
+                <b-card-header header-tag="header" class="p-1" role="tab">
+                  <b-button block v-b-toggle.accordion-1 variant="info" v-on:click="getPartes('boca')">Boca</b-button>
+                </b-card-header>
+                <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
+                  <b-card-body>
+                    <b-card-tex style="align-items:center;">        
+                        <div v-if="mostrando == 'boca'">
+                                        <div v-for="b in bocas">
+                                            <b-button v-on:click="setParte('boca',b.persona.alias)" style="background-color: transparent;">
+                                                <b-col>                                        <b-row>
+                                                <img v-bind:src="b.foto" style="background-color:transparent; max-width:200px; align-items: center;"> </img>
+                                                </b-row>
+                                                <b-row>
+                                                {{b.persona.alias}}
+                                                </b-row>
+                                            </b-col>        
+                                            </b-button>
+                                        </div>
+                        </div>
+                    </b-card-text>
+                    <b-card-text>Elija una boca</b-card-text>
+                  </b-card-body>
+                </b-collapse>
+              </b-card>
+
+
+              <b-card no-body class="mb-1">
+                <b-card-header header-tag="header" class="p-1" role="tab">
+                  <b-button block v-b-toggle.accordion-1 variant="info" v-on:click="getPartes('nariz')">Nariz</b-button>
+                </b-card-header>
+                <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
+                  <b-card-body>
+                    <b-card-tex style="align-items:center;">
+                        <div v-if="mostrando == 'nariz'">        
+                                        <div v-for="b in narizs">
+                                            <b-button v-on:click="setParte('nariz',b.persona.alias)" style="background-color: transparent;">
+                                                <b-col>                                        <b-row>
+                                                <img v-bind:src="b.foto" style="background-color:transparent; max-width:200px; align-items: center;"> </img>
+                                                </b-row>
+                                                <b-row>
+                                                {{b.persona.alias}}
+                                                </b-row>
+                                            </b-col>        
+                                            </b-button>
+                                        </div>
+                        </div>  
+                    </b-card-text>
+                    <b-card-text>Elija una nariz</b-card-text>
+                  </b-card-body>
+                </b-collapse>
+              </b-card>
+
+              <b-card no-body class="mb-1">
+                <b-card-header header-tag="header" class="p-1" role="tab">
+                  <b-button block v-b-toggle.accordion-1 variant="info" v-on:click="getPartes('ojoD')">Ojo derecho</b-button>
+                </b-card-header>
+                <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
+                  <b-card-body>
+                    <b-card-tex style="align-items:center;">        
+                        <div v-if="mostrando == 'ojoD'">
+                                        <div v-for="b in ojoDs">
+                                            <b-button v-on:click="setParte('ojoD',b.persona.alias)" style="background-color: transparent;">
+                                                <b-col>                                        <b-row>
+                                                <img v-bind:src="b.foto" style="background-color:transparent; max-width:200px; align-items: center;"> </img>
+                                                </b-row>
+                                                <b-row>
+                                                {{b.persona.alias}}
+                                                </b-row>
+                                            </b-col>        
+                                            </b-button>
+                                        </div>
+                        </div>
+                    </b-card-text>
+                    <b-card-text>Elija una ojo derecho</b-card-text>
+                  </b-card-body>
+                </b-collapse>
+              </b-card>
+
+              <b-card no-body class="mb-1">
+                <b-card-header header-tag="header" class="p-1" role="tab">
+                  <b-button block v-b-toggle.accordion-1 variant="info" v-on:click="getPartes('ojoI')">Ojo izquierdo</b-button>
+                </b-card-header>
+                <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
+                  <b-card-body>
+                    <b-card-tex style="align-items:center;">        
+                        <div v-if="mostrando == 'ojoI'">
+                                        <div v-for="b in ojoIs">
+                                            <b-button v-on:click="setParte('ojoI',b.persona.alias)" style="background-color: transparent;">
+                                                <b-col>                                        <b-row>
+                                                <img v-bind:src="b.foto" style="background-color:transparent; max-width:200px; align-items: center;"> </img>
+                                                </b-row>
+                                                <b-row>
+                                                {{b.persona.alias}}
+                                                </b-row>
+                                            </b-col>        
+                                            </b-button>
+                                        </div>
+                        </div>
+                    </b-card-text>
+                    <b-card-text>Elija una ojo izquierdo</b-card-text>
+                  </b-card-body>
+                </b-collapse>
+              </b-card>
+
+              <b-card no-body class="mb-1">
+                <b-card-header header-tag="header" class="p-1" role="tab">
+                  <b-button block v-b-toggle.accordion-1 variant="info" v-on:click="getPartes('cejaD')">Ceja derecha</b-button>
+                </b-card-header>
+                <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
+                  <b-card-body>
+                    <b-card-tex style="align-items:center;">        
+                        <div v-if="mostrando == 'cejaD'">
+                                        <div v-for="b in cejaDs">
+                                            <b-button v-on:click="setParte('cejaD',b.persona.alias)" style="background-color: transparent;">
+                                                <b-col>                                        <b-row>
+                                                <img v-bind:src="b.foto" style="background-color:transparent; max-width:200px; align-items: center;"> </img>
+                                                </b-row>
+                                                <b-row>
+                                                {{b.persona.alias}}
+                                                </b-row>
+                                            </b-col>        
+                                            </b-button>
+                                        </div>
+                        </div>
+                    </b-card-text>
+                    <b-card-text>Elija una ceja derecha</b-card-text>
+                  </b-card-body>
+                </b-collapse>
+              </b-card>
+
+              <b-card no-body class="mb-1">
+                <b-card-header header-tag="header" class="p-1" role="tab">
+                  <b-button block v-b-toggle.accordion-1 variant="info" v-on:click="getPartes('cejaI')">Ceja izquierda</b-button>
+                </b-card-header>
+                <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
+                  <b-card-body>
+                    <b-card-tex style="align-items:center;">  
+                        <div v-if="mostrando == 'cejaI'">    
+                                        <div v-for="b in cejaIs">
+                                            <b-button v-on:click="setParte('cejaI',b.persona.alias)" style="background-color: transparent;">
+                                                <b-col>                                        <b-row>
+                                                <img v-bind:src="b.foto" style="background-color:transparent; max-width:200px; align-items: center;"> </img>
+                                                </b-row>
+                                                <b-row>
+                                                {{b.persona.alias}}
+                                                </b-row>
+                                            </b-col>        
+                                            </b-button>
+                                        </div>
+                        </div> 
+                    </b-card-text>
+                    <b-card-text>Elija una ceja izquierda</b-card-text>
+                  </b-card-body>
+                </b-collapse>
+              </b-card>
+
+            </div>
+          </template>
+      
+ </div>
+
+
+    <script>
+      var app = new Vue({
+    el:"#app",
+    data:{
+        dominio_api:"http://uvatar.pythonanywhere.com",
+       altura: 500,
+        cabeza: JSON.parse('{"caraVacia": {"persona": {"alias": "LuisManso"}, "foto": "Imagenes/Uvatar/LuisManso/LuisManso_caraVacia.png", "size": {"x": 616, "y": 1095}, "boca": {"size": {"x": 279, "y": 113}, "pos": {"x": 180, "y": 612}}, "nariz": {"size": {"x": 187, "y": 190}, "pos": {"x": 229, "y": 408}}, "ojoD": {"size": {"x": 150, "y": 73}, "pos": {"x": 127, "y": 385}}, "ojoI": {"size": {"x": 148, "y": 83}, "pos": {"x": 360, "y": 382}}, "cejaD": {"size": {"x": 188, "y": 96}, "pos": {"x": 91, "y": 313}}, "cejaI": {"size": {"x": 187, "y": 101}, "pos": {"x": 364, "y": 307}}}, "boca": {"persona": {"alias": "LuisManso"}, "foto": "Imagenes/Uvatar/LuisManso/LuisManso_boca.png", "size": {"x": 279, "y": 113}}, "nariz": {"persona": {"alias": "LuisManso"}, "foto": "Imagenes/Uvatar/LuisManso/LuisManso_nariz.png", "size": {"x": 187, "y": 190}}, "ojoD": {"persona": {"alias": "LuisManso"}, "foto": "Imagenes/Uvatar/LuisManso/LuisManso_ojoD.png", "size": {"x": 150, "y": 73}}, "ojoI": {"persona": {"alias": "LuisManso"}, "foto": "Imagenes/Uvatar/LuisManso/LuisManso_ojoI.png", "size": {"x": 148, "y": 83}}, "cejaD": {"persona": {"alias": "LuisManso"}, "foto": "Imagenes/Uvatar/LuisManso/LuisManso_cejaD.png", "size": {"x": 188, "y": 96}}, "cejaI": {"persona": {"alias": "LuisManso"}, "foto": "Imagenes/Uvatar/LuisManso/LuisManso_cejaI.png", "size": {"x": 187, "y": 101}}}'),
+        bocas:{},
+        caraVacias:{},
+        narizs:{},
+        ojoDs:{},
+        ojoIs:{},
+        cejaIs:{},
+        cejaDs:{},
+        mostrando: ""
+    },
+    computed:{
+        computedConversion: function(){
+            return this.altura / (this.cabeza.caraVacia.size.y + 0.0);
+        },
+        computedWidthCaraVacia(){
+            return `${this.cabeza.caraVacia.boca.size.x * this.computedConversion}px`;
+        },
+        computedHeightCaraVavia(){
+            return `${this.cabeza.caraVacia.boca.size.y * this.computedConversion}px`;
+        },
+        computedLeftBoca: function () {
+            return `${this.cabeza.caraVacia.boca.pos.x * this.computedConversion}px`;
+        },
+        computedTopBoca: function(){
+            return `${this.cabeza.caraVacia.boca.pos.y * this.computedConversion}px`;
+        },
+        computedWidthBoca(){
+            return `${this.cabeza.caraVacia.boca.size.x * this.computedConversion}px`;
+        },
+        computedHeightBoca(){
+            return `${this.cabeza.caraVacia.boca.size.y * this.computedConversion}px`;
+        },
+        computedImgBoca(){
+            return this.cabeza.boca.foto;
+        },
+        computedLeftNariz: function () {
+            return `${this.cabeza.caraVacia.nariz.pos.x * this.computedConversion}px`;
+        },
+        computedTopNariz: function(){
+            return `${this.cabeza.caraVacia.nariz.pos.y * this.computedConversion}px`;
+        },
+        computedWidthNariz(){
+            return `${this.cabeza.caraVacia.nariz.size.x * this.computedConversion}px`;
+        },
+        computedHeightNariz(){
+            return `${this.cabeza.caraVacia.nariz.size.y * this.computedConversion}px`;
+        },
+        computedImgNariz(){
+            return this.cabeza.nariz.foto;
+        },
+        computedLeftCejaI: function () {
+            return `${this.cabeza.caraVacia.cejaI.pos.x * this.computedConversion}px`;
+        },
+        computedTopCejaI: function(){
+            return `${this.cabeza.caraVacia.cejaI.pos.y * this.computedConversion}px`;
+        },
+        computedWidthCejaI(){
+            return `${this.cabeza.caraVacia.cejaI.size.x * this.computedConversion}px`;
+        },
+        computedHeightCejaI(){
+            return `${this.cabeza.caraVacia.cejaI.size.y * this.computedConversion}px`;
+        },
+        computedImgCejaI(){
+            return this.cabeza.cejaI.foto;
+        },
+        computedLeftCejaD: function () {
+            return `${this.cabeza.caraVacia.cejaD.pos.x * this.computedConversion}px`;
+        },
+        computedTopCejaD: function(){
+            return `${this.cabeza.caraVacia.cejaD.pos.y * this.computedConversion}px`;
+        },
+        computedWidthCejaD(){
+            return `${this.cabeza.caraVacia.cejaD.size.x * this.computedConversion}px`;
+        },
+        computedHeightCejaD(){
+            return `${this.cabeza.caraVacia.cejaD.size.y * this.computedConversion}px`;
+        },
+        computedImgCejaD(){
+            return this.cabeza.cejaD.foto;
+        },
+        computedLeftOjoI: function () {
+            return `${this.cabeza.caraVacia.ojoI.pos.x * this.computedConversion}px`;
+        },
+        computedTopOjoI: function(){
+            return `${this.cabeza.caraVacia.ojoI.pos.y * this.computedConversion}px`;
+        },
+        computedWidthOjoI(){
+            return `${this.cabeza.caraVacia.ojoI.size.x * this.computedConversion}px`;
+        },
+        computedHeightOjoI(){
+            return `${this.cabeza.caraVacia.ojoI.size.y * this.computedConversion}px`;
+        },
+        computedImgOjoI(){
+            return this.cabeza.ojoI.foto;
+        },
+        computedLeftOjoD: function () {
+            return `${this.cabeza.caraVacia.ojoD.pos.x * this.computedConversion}px`;
+        },
+        computedTopOjoD: function(){
+            return `${this.cabeza.caraVacia.ojoD.pos.y * this.computedConversion}px`;
+        },
+        computedWidthOjoD(){
+            return `${this.cabeza.caraVacia.ojoD.size.x * this.computedConversion}px`;
+        },
+        computedHeightOjoD(){
+            return `${this.cabeza.caraVacia.ojoD.size.y * this.computedConversion}px`;
+        },
+        computedImgOjoD(){
+            return this.cabeza.ojoD.foto;
+        },
+        computedWidthCaraVacia(){
+            return `${this.cabeza.caraVacia.size.x * this.computedConversion}px`;
+        },
+        computedHeightCaraVacia(){
+            return `${this.cabeza.caraVacia.size.y * this.computedConversion}px`;
+        },
+        computedImgCaraVacia(){
+            return this.cabeza.caraVacia.foto;
+        },
+        computedBackgroundColor(){
+            return "yellow";
+        },
+        computedAliasOjoD(){
+            return this.cabeza.ojoD.persona.alias;
+        },
+        computedAliasOjoI(){
+            return this.cabeza.ojoI.persona.alias;
+        },
+        computedCejaI(){
+            return this.cabeza.cejaI.persona.alias;
+        },
+        computedBoca(){
+            return this.cabeza.boca.persona.alias;
+        },
+        computedNariz(){
+            return this.cabeza.nariz.persona.alias;
+        },
+        computedCejaD(){
+            return this.cabeza.cejaD.persona.alias;
+        },
+        computedAliasCaraVacia(){
+            return this.cabeza.caraVacia.persona.alias;
+        },
+        computedJSON(){
+            return JSON.stringify(this.cabeza, null, '');
+        },
+    },
+    mounted(){
+    },
+    methods:{
+        getJSON(){
+            return JSON.stringify(this.cabeza, " ");
+        },
+        async mix(){
+        try{
+          const res = await axios.get( this.dominio_api+ '/mix')
+          this.cabeza = res.data
+        }catch(error){
+            console.log(error)
+        }
+        },
+        async getPartes(parte){
+            this.mostrando = parte
+          try{
+                const res = await axios.get( this.dominio_api + '/' + parte)
+                this[parte + "s"] = res.data
+            }catch(error){
+                console.log(error)
+            }
+        },
+        setParte(parte, variable){
+            this.cabeza[parte] = this[parte + "s"][variable]
+        },
+        
+    }
+})
+</script>
 </body>
+
 </html>
